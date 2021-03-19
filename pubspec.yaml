@@ -1,8 +1,7 @@
-name: InputField
+name: input_field
 description: Input field library.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/jellyfishsolutions/input-field
 
 environment:
     sdk: ">=2.7.0 <3.0.0"

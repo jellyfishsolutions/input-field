@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../lib/InputField.dart';
+import '../lib/input_field.dart';
 
 void main() {
   runApp(MyApp());
