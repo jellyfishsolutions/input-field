@@ -24,6 +24,16 @@ class InputFieldController {
     _controller.addListener(listener);
   }
 
+  void requestValidation() {
+    if (_checkOnChange != null) {
+      _performValidation();
+    }
+  }
+
+  void _performValidation() {
+    setValidity(_checkOnChange(text));
+  }
+
   void setValidity(bool value) {
     isValid = value;
     if (value) {
@@ -85,8 +95,7 @@ class _InputFieldState extends State<InputField> {
     if (widget.controller._checkOnChange != null) {
       widget.controller.addListener(() {
         setState(() {
-          widget.controller.setValidity(
-              widget.controller._checkOnChange(widget.controller.text));
+          widget.controller._performValidation();
         });
       });
     }
@@ -100,56 +109,5 @@ class _InputFieldState extends State<InputField> {
         widget.controller.focusNode,
         widget.controller.status,
         widget.controller.isValid);
-    /*return Column(children: [
-      Container(
-        alignment: Alignment.centerLeft,
-        child: Text(context.tr(widget.label),
-            style: LibraTypography.small(
-              weight: FontWeight.w400,
-              color: widget.controller.status == InputStatus.FOCUSED
-                  ? LibraColors.secondary
-                  : (widget.controller.status == InputStatus.CHECKED
-                      ? LibraColors.primary
-                      : LibraColors.white.withOpacity(0)),
-            )),
-      ),
-      TextFormField(
-        focusNode: widget.controller.focusNode,
-        controller: widget.controller._controller,
-        cursorColor: LibraColors.secondary,
-        obscureText: widget.isSecureText,
-        obscuringCharacter: '*',
-        keyboardType: widget.keyboardType,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(bottom: 18),
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          labelText: widget.label != null ? context.tr(widget.label) : '',
-          prefixIcon: Padding(
-            padding: EdgeInsets.only(
-              right: 20,
-            ),
-            child: widget.icon,
-          ),
-          prefixIconConstraints: BoxConstraints(maxWidth: 40),
-          suffixIcon: Icon(
-            Icons.check,
-            color: widget.controller.status == InputStatus.CHECKED
-                ? LibraColors.primary
-                : LibraColors.white,
-          ),
-          labelStyle: TextStyle(color: getLabelColor()),
-          border: UnderlineInputBorder(
-              borderSide:
-                  BorderSide(color: LibraColors.darkGreyVariant, width: 1.5)),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-                color: widget.controller.status == InputStatus.CHECKED
-                    ? LibraColors.primary
-                    : LibraColors.secondary,
-                width: 1.5),
-          ),
-        ),
-      )
-    ]);*/
   }
 }
