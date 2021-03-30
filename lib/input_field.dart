@@ -24,6 +24,10 @@ class InputFieldController {
     _controller.addListener(listener);
   }
 
+  void clear() {
+    _controller.clear();
+  }
+
   void requestValidation() {
     if (_checkOnChange != null) {
       _performValidation();

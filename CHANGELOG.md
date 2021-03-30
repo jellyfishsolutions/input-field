@@ -1,3 +1,7 @@
+## [0.0.3] - 30 April 2021
+
+-   Added new clear method that proxy the standard clear method of a controller
+
 ## [0.0.2] - 25 April 2021
 
 -   Added new method to force the validation from a controller
