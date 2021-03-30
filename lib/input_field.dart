@@ -55,6 +55,10 @@ class InputFieldController {
     return _controller.text;
   }
 
+  set text(String value) {
+    _controller.text = value;
+  }
+
   bool get hasPrimaryFocus {
     return focusNode.hasPrimaryFocus;
   }
